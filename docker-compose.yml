@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  apitemplatecontainer:
+    image: thebuckeyeman20/api:template
+    container_name: apitemplatecontainer
+    ports:
+      - 8090:8090
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
