@@ -20,7 +20,7 @@ public class Controller {
         this.templateService = templateService;
         this.s3Service = s3Service;
     }
-    
+
     @GetMapping("/<Name_of_Endpoint_to_call_to_trigger_api>")
     public Model getModel(){
         Model model = templateService.getModel();
