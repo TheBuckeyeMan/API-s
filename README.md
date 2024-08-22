@@ -14,3 +14,5 @@ This Repo is for the capture of API's, as well as to outline a few api templates
 
 5. Also in TemplateService, we will need to add all of the data points we are consuming(will mimmic your model) and made edits so we can properly write to file
 writer.write("<Identifier of Value>" + model.<Getter for this value found in models> + "\n");
+
+6. Modify CICD Pipeline to Modify the Image name
