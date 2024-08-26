@@ -7,18 +7,17 @@ import java.io.IOException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import base.template.template.api.model.Model;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 
 //Entire purpose of service is to consume the data from api
 @Service
+@RequiredArgsConstructor
+@Slf4j
 public class TemplateService {
     
     private final RestTemplate restTemplate;
-
-    //Assign the rest template to this Service
-    public TemplateService(RestTemplate restTemplate){
-        this.restTemplate = restTemplate;
-    }
 
     //Make getter method for our model
     public Model getModel(){
