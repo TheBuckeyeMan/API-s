@@ -1,23 +1,18 @@
 package base.template.template.api.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 //entire purpose of the model is to map what we believe the response will be
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Model {
     //Add all values we expect to see in the response and data types
     private String placeholder;
 
     //Constructor - Add all additional data points
-    public Model(String placeholder){
-        this.placeholder = placeholder;
-    }
-
-    //Getters - Add for all Data Points
-    public String getPlaceholder(){
-        return placeholder;
-    }
-
-    //Setters - Add for all Data Points
-    public void setPlaceholder(String placeholder){
-        this.placeholder = placeholder;
-    } 
 }
