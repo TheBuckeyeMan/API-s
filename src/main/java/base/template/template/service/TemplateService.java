@@ -3,13 +3,10 @@ package base.template.template.service;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import base.template.template.api.model.Model;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,7 +31,6 @@ public class TemplateService {
 
             String jsonResponse = objectMapper.writeValueAsString(model);
             log.info("Recieved JSON Response from external API: {}", jsonResponse);//Log the JSON Response from Extenral API
-
                 if (model != null) {
                     saveToFile(model);
                 }
