@@ -36,7 +36,7 @@ public class TemplateService {
             log.info("API Model from External API: {}", model);//Log the response from the external api. The response is model object
 
             String jsonResponse = objectMapper.writeValueAsString(model);
-            log.info("Reciueved JSON  Response from external API: {}", jsonResponse);//Log the JSON Response from Extenral API
+            log.info("Recieved JSON Response from external API: {}", jsonResponse);//Log the JSON Response from Extenral API
 
                 if (model != null) {
                     saveToFile(model);
