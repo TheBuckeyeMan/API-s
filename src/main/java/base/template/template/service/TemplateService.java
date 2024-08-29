@@ -7,6 +7,9 @@ import java.io.IOException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import base.template.template.api.model.Model;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,26 +22,27 @@ import lombok.extern.slf4j.Slf4j;
 public class TemplateService {
     
     private final RestTemplate restTemplate;
+    private final ObjectMapper objectMapper = new ObjectMapper();//Add in object for the JSON Response Object
 
     //Make getter method for our model
     public Model getModel(){
         String url = "<Your URL Here>";
 
-        //Log the request being made to external data source
-        log.info("Making request to External API: {}", url);
-
-        Model model = null;
+        log.info("Requesting External API at URL: {}", url);//Log the request being made to external data source
         
+        Model model = null;
         try {
             model = restTemplate.getForObject(url,Model.class);
-            //Log the response from the external api. The response is model object
-            log.info("Recieved Response from external API: {}", model);
+            log.info("API Model from External API: {}", model);//Log the response from the external api. The response is model object
+
+            String jsonResponse = objectMapper.writeValueAsString(model);
+            log.info("Reciueved JSON  Response from external API: {}", jsonResponse);//Log the JSON Response from Extenral API
+
                 if (model != null) {
                     saveToFile(model);
                 }
                 } catch (HttpStatusCodeException e) {
-                    //log error if an error status code is returned
-                    log.error("Recieved an error response from API: {}", e.getResponseBodyAsString(), e);
+                    log.error("Recieved an error response from API: {}", e.getResponseBodyAsString(), e);//log error if an error status code is returned
                 } catch (Exception e) {
                     log.error("An Error Occured while making the reques tto external API: {}", e);
                 }
