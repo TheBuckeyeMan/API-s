@@ -28,12 +28,9 @@ public class TemplateService {
     public Model getModel(){
         String url = "<Your URL Here>";
 
-        log.info("Requesting External API at URL: {}", url);//Log the request being made to external data source
-        
         Model model = null;
         try {
             model = restTemplate.getForObject(url,Model.class);
-            log.info("API Model from External API: {}", model);//Log the response from the external api. The response is model object
 
             String jsonResponse = objectMapper.writeValueAsString(model);
             log.info("Recieved JSON Response from external API: {}", jsonResponse);//Log the JSON Response from Extenral API
