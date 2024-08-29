@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 import base.template.template.api.model.Model;
 import lombok.RequiredArgsConstructor;
@@ -22,10 +23,25 @@ public class TemplateService {
     //Make getter method for our model
     public Model getModel(){
         String url = "<Your URL Here>";
-        Model model = restTemplate.getForObject(url,Model.class);
-        if (model != null) {
-            saveToFile(model);
-        }
+
+        //Log the request being made to external data source
+        log.info("Making request to External API: {}", url);
+
+        Model model = null;
+        
+        try {
+            model = restTemplate.getForObject(url,Model.class);
+            //Log the response from the external api. The response is model object
+            log.info("Recieved Response from external API: {}", model);
+                if (model != null) {
+                    saveToFile(model);
+                }
+                } catch (HttpStatusCodeException e) {
+                    //log error if an error status code is returned
+                    log.error("Recieved an error response from API: {}", e.getResponseBodyAsString(), e);
+                } catch (Exception e) {
+                    log.error("An Error Occured while making the reques tto external API: {}", e);
+                }
        return model;
     }
     private void saveToFile(Model model) {

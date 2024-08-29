@@ -59,6 +59,13 @@
 			<artifactId>s3</artifactId>
 			<version>2.17.46</version>
 		</dependency>
+		<!--Added Dependency so we can use the interceptor-->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>4.0.1</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
