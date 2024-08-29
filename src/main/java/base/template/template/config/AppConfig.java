@@ -12,9 +12,9 @@ import java.util.Collections;
 @Configuration
 public class AppConfig {
     @Bean
-    public RestTemplate restTemplate(){
+    public RestTemplate restTemplate(ToExternalLoggingInterceptor toExternalLoggingInterceptor){
         RestTemplate restTemplate = new RestTemplate();
-        restTemplate.setInterceptors(Collections.singletonList(ToExternalLoggingInterceptor)); //If we have any other requests we want to intercept, we can capture them registering here
+        restTemplate.setInterceptors(Collections.singletonList(toExternalLoggingInterceptor)); //If we have any other requests we want to intercept, we can capture them registering here
         return restTemplate;
     }
 }
